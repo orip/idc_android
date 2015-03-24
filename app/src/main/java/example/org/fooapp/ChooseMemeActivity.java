@@ -26,13 +26,6 @@ public class ChooseMemeActivity extends ActionBarActivity {
 
         GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(new ImagesAdapter());
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("ChooseMemeActivity", "Image clicked, index=" + i + ", id=" + mDrawableIds[i]);
-                startActivity(CustomizeMemeActivity.createIntentForDrawable(ChooseMemeActivity.this, mDrawableIds[i]));
-            }
-        });
     }
 
     /**

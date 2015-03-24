@@ -19,6 +19,7 @@
         android:textSize="48sp" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/some_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,11 +27,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="Tap Me" />
-
-    <TextView
-        android:id="@+id/secret_text"
-        style="@style/SecretText"
-        android:layout_below="@id/some_button"
-        android:text="Hello IDC" />
 
 </RelativeLayout>

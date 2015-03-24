@@ -53,13 +53,13 @@ public class CustomizeMemeActivity extends ActionBarActivity {
         findViewById(R.id.share_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String caption = captionInput.getText().toString();
+                String caption = "";
                 Log.d("CustomizeMemeActivity", "share button tapped, caption=" + caption);
                 Bitmap immutableBitmap = BitmapFactory.decodeResource(getResources(), mDrawableId);
                 Bitmap mutableBitmap = immutableBitmap.copy(Bitmap.Config.RGB_565, true);
-                addText(mutableBitmap, caption);
 
-                shareBitmap(mutableBitmap);
+                //addText(mutableBitmap, caption);
+                //shareBitmap(mutableBitmap);
             }
         });
     }
