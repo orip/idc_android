@@ -20,6 +20,10 @@
             android:name=".ChooseMemeActivity"
             android:label="@string/title_activity_choose_meme" >
         </activity>
+        <activity
+            android:name=".CustomizeMemeActivity"
+            android:label="@string/title_activity_customize_meme" >
+        </activity>
     </application>
 
 </manifest>
