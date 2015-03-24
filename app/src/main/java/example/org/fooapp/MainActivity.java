@@ -1,7 +1,7 @@
 package example.org.fooapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,14 +18,21 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final View secretTextView = findViewById(R.id.secret_text);
+
         findViewById(R.id.some_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Some button clicked", Toast.LENGTH_SHORT).show();
+                
+                // Fade the button in
+                secretTextView.setAlpha(0f);
+                secretTextView.setVisibility(View.VISIBLE);
+                secretTextView.animate().alpha(1f).setDuration(600);
             }
         });
 
-        findViewById(R.id.secret_text).setOnClickListener(new View.OnClickListener() {
+        secretTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(LOG_TAG, "Secret text clicked");

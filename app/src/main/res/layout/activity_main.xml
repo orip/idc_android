@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/secret_text"
+        style="@style/SecretText"
         android:layout_below="@id/some_button"
-        android:text="Hello IDC"
-        style="@style/SecretText" />
+        android:text="Hello IDC" />
 
 </RelativeLayout>
