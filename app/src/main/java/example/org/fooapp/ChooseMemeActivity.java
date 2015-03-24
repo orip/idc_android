@@ -30,6 +30,7 @@ public class ChooseMemeActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("ChooseMemeActivity", "Image clicked, index=" + i + ", id=" + mDrawableIds[i]);
+                startActivity(CustomizeMemeActivity.createIntentForDrawable(ChooseMemeActivity.this, mDrawableIds[i]));
             }
         });
     }
