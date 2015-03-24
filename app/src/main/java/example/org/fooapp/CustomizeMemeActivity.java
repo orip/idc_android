@@ -53,10 +53,12 @@ public class CustomizeMemeActivity extends ActionBarActivity {
         findViewById(R.id.share_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("CustomizeMemeActivity", "share button tapped");
+                String caption = captionInput.getText().toString();
+                Log.d("CustomizeMemeActivity", "share button tapped, caption=" + caption);
                 Bitmap immutableBitmap = BitmapFactory.decodeResource(getResources(), mDrawableId);
-                Bitmap mutableBitmap = immutableBitmap.copy(immutableBitmap.getConfig(), true);
-                addText(mutableBitmap, captionInput.getText().toString());
+                Bitmap mutableBitmap = immutableBitmap.copy(Bitmap.Config.RGB_565, true);
+                addText(mutableBitmap, caption);
+
                 shareBitmap(mutableBitmap);
             }
         });
@@ -66,21 +68,12 @@ public class CustomizeMemeActivity extends ActionBarActivity {
      * Super-simple implementation for adding text to image.
      */
     private void addText(Bitmap bitmap, String text) {
-        Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTextSize(24 * bitmap.getDensity());
         paint.setColor(Color.WHITE);
+        paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.meme_caption_text_size));
 
-        Rect bounds = new Rect();
-        paint.getTextBounds(text, 0, text.length(), bounds);
-
-        // center horizontally
-        int x = (bitmap.getWidth() - bounds.width()) / 2;
-
-        // 12 dps above bottom
-        int y = (bitmap.getHeight() - bounds.height() - 12 * bitmap.getDensity());
-
-        canvas.drawText(text, x, y, paint);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawText(text, 100, 150, paint);
     }
 
     /**
