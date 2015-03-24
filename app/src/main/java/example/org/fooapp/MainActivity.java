@@ -1,5 +1,6 @@
 package example.org.fooapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Some button clicked", Toast.LENGTH_SHORT).show();
-                
+
                 // Fade the button in
                 secretTextView.setAlpha(0f);
                 secretTextView.setVisibility(View.VISIBLE);
@@ -36,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Log.d(LOG_TAG, "Secret text clicked");
+                startActivity(new Intent(MainActivity.this, ChooseMemeActivity.class));
             }
         });
     }
