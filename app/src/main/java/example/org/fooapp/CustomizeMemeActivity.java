@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -43,14 +48,39 @@ public class CustomizeMemeActivity extends ActionBarActivity {
         mDrawableId = intent.getIntExtra(DRAWABLE_ID_EXTRA_NAME, 0);
         ((ImageView) findViewById(R.id.meme_image)).setImageResource(mDrawableId);
 
+        final EditText captionInput = (EditText) findViewById(R.id.caption_input);
+
         findViewById(R.id.share_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("CustomizeMemeActivity", "share button tapped");
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), mDrawableId);
-                shareBitmap(bitmap);
+                Bitmap immutableBitmap = BitmapFactory.decodeResource(getResources(), mDrawableId);
+                Bitmap mutableBitmap = immutableBitmap.copy(immutableBitmap.getConfig(), true);
+                addText(mutableBitmap, captionInput.getText().toString());
+                shareBitmap(mutableBitmap);
             }
         });
+    }
+
+    /**
+     * Super-simple implementation for adding text to image.
+     */
+    private void addText(Bitmap bitmap, String text) {
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(24 * bitmap.getDensity());
+        paint.setColor(Color.WHITE);
+
+        Rect bounds = new Rect();
+        paint.getTextBounds(text, 0, text.length(), bounds);
+
+        // center horizontally
+        int x = (bitmap.getWidth() - bounds.width()) / 2;
+
+        // 12 dps above bottom
+        int y = (bitmap.getHeight() - bounds.height() - 12 * bitmap.getDensity());
+
+        canvas.drawText(text, x, y, paint);
     }
 
     /**
