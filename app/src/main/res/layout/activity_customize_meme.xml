@@ -8,20 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="example.org.fooapp.CustomizeMemeActivity">
 
+
     <ImageView
         android:id="@+id/meme_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/share_button"
         android:layout_marginBottom="24dp"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/success_kid" />
+        android:scaleType="centerInside"
+        tools:src="@drawable/socially_awkward_penguin" />
 
     <EditText
         android:id="@+id/caption_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/meme_image"
         android:layout_toLeftOf="@+id/share_button"
         android:hint="Enter Caption" />
 
@@ -29,8 +31,8 @@
         android:id="@+id/share_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/meme_image"
         android:text="Share" />
 
 </RelativeLayout>
